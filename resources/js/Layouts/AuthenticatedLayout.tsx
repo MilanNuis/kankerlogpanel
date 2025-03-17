@@ -1,4 +1,11 @@
-import { FileText, HelpCircle, Home, Logs, Settings, Users } from "lucide-react";
+import {
+    FileText,
+    HelpCircle,
+    Home,
+    Logs,
+    Settings,
+    Users,
+} from "lucide-react";
 import { Link, usePage } from "@inertiajs/react";
 import { PropsWithChildren, ReactNode } from "react";
 
@@ -7,13 +14,6 @@ export default function Authenticated({
     children,
 }: PropsWithChildren<{ header?: ReactNode }>) {
     const user = usePage().props.auth.user;
-
-    const mainNavItems = [
-        { icon: Home, label: "Dashboard", href: "/dashboard" },
-        { icon: Users, label: "Gebruikers", href: "/gebruikers" },
-        { icon: FileText, label: "Documenten", href: "/documenten" },
-        { icon: Settings, label: "Instellingen", href: "/instellingen" },
-    ];
 
     return (
         <div className="flex h-screen bg-gray-900 text-gray-200">
@@ -48,7 +48,7 @@ export default function Authenticated({
                                 }`}
                             >
                                 <Logs className="h-4 w-4" />
-                                <span>All logs</span>
+                                <span>Speler Logs</span>
                             </Link>
                         </li>
                         <li>
@@ -64,7 +64,6 @@ export default function Authenticated({
                                 <span>Dashboard</span>
                             </Link>
                         </li>
-
                     </ul>
                 </nav>
 

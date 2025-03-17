@@ -82,3 +82,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+.dashboard-card {
+  background-color: #131b2e;
+  border-radius: 0.75rem;
+  border: none;
+}
