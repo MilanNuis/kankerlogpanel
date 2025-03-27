@@ -274,7 +274,7 @@ export function PlayerLogs() {
                 <h1 className="text-2xl font-bold">Speler Logs</h1>
                 <div className="flex items-center gap-4">
                     <div className="relative">
-                        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-white" />
                         <Input
                             type="search"
                             placeholder="Zoeken op speler, actie of details..."
@@ -322,7 +322,7 @@ export function PlayerLogs() {
 
             <Card className="bg-[#131b2e] border-0">
                 <CardHeader className="pb-3">
-                    <CardTitle>Speler Logs</CardTitle>
+                    <CardTitle className="text-white">Speler Logs</CardTitle>
                     <CardDescription>
                         Bekijk alle speler-gerelateerde activiteiten en
                         gebeurtenissen
@@ -332,23 +332,25 @@ export function PlayerLogs() {
                     <Table>
                         <TableHeader>
                             <TableRow className="border-[#1e2a45]">
-                                <TableHead className="w-[180px]">
+                                <TableHead className="w-[180px] text-white">
                                     Tijdstip
                                 </TableHead>
-                                <TableHead className="w-[150px]">
+                                <TableHead className="w-[150px] text-white">
                                     Speler
                                 </TableHead>
-                                <TableHead className="w-[120px]">
+                                <TableHead className="w-[120px] text-white">
                                     Actie
                                 </TableHead>
-                                <TableHead className="w-[120px]">
+                                <TableHead className="w-[120px] text-white">
                                     Ernst
                                 </TableHead>
-                                <TableHead>Details</TableHead>
-                                <TableHead className="w-[150px]">
+                                <TableHead className="w-[120px] text-white">
+                                    Details
+                                </TableHead>
+                                <TableHead className="w-[150px] text-white">
                                     Locatie
                                 </TableHead>
-                                <TableHead className="w-[100px] text-right">
+                                <TableHead className="w-[100px] text-right text-white">
                                     Acties
                                 </TableHead>
                             </TableRow>
@@ -357,7 +359,7 @@ export function PlayerLogs() {
                             {filteredLogs.map((log) => (
                                 <TableRow
                                     key={log.id}
-                                    className="cursor-pointer border-[#1e2a45] hover:bg-[#1e2a45]"
+                                    className="cursor-pointer border-[#1e2a45] hover:bg-[#1e2a45] text-white"
                                     onClick={() => handleLogSelect(log)}
                                 >
                                     <TableCell className="font-mono text-xs">
@@ -399,12 +401,13 @@ export function PlayerLogs() {
                 </CardContent>
             </Card>
 
-            {/* Log Details Dialog */}
             <Dialog open={isDetailsOpen} onOpenChange={setIsDetailsOpen}>
                 <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto bg-[#131b2e] border-[#1e2a45]">
                     <DialogHeader className="mb-4">
                         <div className="flex items-center justify-between">
-                            <DialogTitle>Log Details</DialogTitle>
+                            <DialogTitle className="text-white">
+                                Log Details
+                            </DialogTitle>
                             <DialogClose asChild>
                                 <Button
                                     variant="ghost"
@@ -423,19 +426,19 @@ export function PlayerLogs() {
                     {selectedLog && (
                         <div className="space-y-6">
                             <div className="space-y-2">
-                                <h3 className="text-lg font-semibold">
+                                <h3 className="text-lg font-semibold text-white">
                                     Log Informatie
                                 </h3>
                                 <div className="grid grid-cols-2 gap-2 text-sm">
                                     <div className="flex items-center gap-2">
                                         <Calendar
                                             size={16}
-                                            className="text-muted-foreground"
+                                            className="text-white"
                                         />
-                                        <span className="text-muted-foreground">
+                                        <span className="text-white">
                                             Datum:
                                         </span>
-                                        <span>
+                                        <span className="text-white">
                                             {
                                                 selectedLog.timestamp.split(
                                                     " "
@@ -446,12 +449,12 @@ export function PlayerLogs() {
                                     <div className="flex items-center gap-2">
                                         <Clock
                                             size={16}
-                                            className="text-muted-foreground"
+                                            className="text-white"
                                         />
-                                        <span className="text-muted-foreground">
+                                        <span className="text-white">
                                             Tijd:
                                         </span>
-                                        <span>
+                                        <span className="text-white">
                                             {
                                                 selectedLog.timestamp.split(
                                                     " "
@@ -462,239 +465,39 @@ export function PlayerLogs() {
                                     <div className="flex items-center gap-2">
                                         <User
                                             size={16}
-                                            className="text-muted-foreground"
+                                            className="text-white"
                                         />
-                                        <span className="text-muted-foreground">
+                                        <span className="text-white">
                                             Speler:
                                         </span>
-                                        <span>{selectedLog.player}</span>
+                                        <span className="text-white">
+                                            {selectedLog.player}
+                                        </span>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <Shield
                                             size={16}
-                                            className="text-muted-foreground"
+                                            className="text-white"
                                         />
-                                        <span className="text-muted-foreground">
+                                        <span className="text-white">
                                             Actie:
                                         </span>
-                                        <span>{selectedLog.action}</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <MapPin
-                                            size={16}
-                                            className="text-muted-foreground"
-                                        />
-                                        <span className="text-muted-foreground">
-                                            Locatie:
+                                        <span className="text-white">
+                                            {selectedLog.action}
                                         </span>
-                                        <span>{selectedLog.location}</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <Info
-                                            size={16}
-                                            className="text-muted-foreground"
-                                        />
-                                        <span className="text-muted-foreground">
-                                            Ernst:
-                                        </span>
-                                        <Badge
-                                            variant={
-                                                getSeverityColor(
-                                                    selectedLog.severity
-                                                ) as any
-                                            }
-                                            className="ml-1"
-                                        >
-                                            {selectedLog.severity}
-                                        </Badge>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="space-y-2">
-                                <h3 className="text-lg font-semibold">
+                                <h3 className="text-lg text-white font-semibold">
                                     Details
                                 </h3>
                                 <Card className="p-4 text-sm bg-[#1e2a45] border-0">
-                                    <p>{selectedLog.details}</p>
+                                    <p className="text-white">
+                                        {selectedLog.details}
+                                    </p>
                                 </Card>
-                            </div>
-
-                            <Separator className="bg-[#1e2a45]" />
-
-                            <Tabs defaultValue="player-info">
-                                <TabsList className="grid w-full grid-cols-2 bg-[#1e2a45]">
-                                    <TabsTrigger
-                                        value="player-info"
-                                        className="data-[state=active]:bg-[#2a3a5a]"
-                                    >
-                                        Speler Informatie
-                                    </TabsTrigger>
-                                    <TabsTrigger
-                                        value="related-logs"
-                                        className="data-[state=active]:bg-[#2a3a5a]"
-                                    >
-                                        Gerelateerde Logs
-                                    </TabsTrigger>
-                                </TabsList>
-                                <TabsContent
-                                    value="player-info"
-                                    className="space-y-4 mt-4"
-                                >
-                                    {playerDetails[
-                                        selectedLog.player as keyof typeof playerDetails
-                                    ] ? (
-                                        <div className="space-y-4">
-                                            <div className="flex items-center gap-4">
-                                                <div className="h-16 w-16 rounded-full bg-[#1e2a45] flex items-center justify-center">
-                                                    <User size={32} />
-                                                </div>
-                                                <div>
-                                                    <h4 className="font-semibold">
-                                                        {
-                                                            playerDetails[
-                                                                selectedLog.player as keyof typeof playerDetails
-                                                            ].name
-                                                        }
-                                                    </h4>
-                                                    <p className="text-sm text-muted-foreground">
-                                                        {selectedLog.steamId}
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <div className="grid grid-cols-2 gap-4">
-                                                <Card className="p-3 bg-[#1e2a45] border-0">
-                                                    <div className="text-sm text-muted-foreground">
-                                                        Speeltijd
-                                                    </div>
-                                                    <div className="font-semibold">
-                                                        {
-                                                            playerDetails[
-                                                                selectedLog.player as keyof typeof playerDetails
-                                                            ].playTime
-                                                        }
-                                                    </div>
-                                                </Card>
-                                                <Card className="p-3 bg-[#1e2a45] border-0">
-                                                    <div className="text-sm text-muted-foreground">
-                                                        Waarschuwingen
-                                                    </div>
-                                                    <div className="font-semibold">
-                                                        {
-                                                            playerDetails[
-                                                                selectedLog.player as keyof typeof playerDetails
-                                                            ].warnings
-                                                        }
-                                                    </div>
-                                                </Card>
-                                                <Card className="p-3 bg-[#1e2a45] border-0">
-                                                    <div className="text-sm text-muted-foreground">
-                                                        Eerste Join
-                                                    </div>
-                                                    <div className="font-semibold">
-                                                        {
-                                                            playerDetails[
-                                                                selectedLog.player as keyof typeof playerDetails
-                                                            ].firstJoin
-                                                        }
-                                                    </div>
-                                                </Card>
-                                                <Card className="p-3 bg-[#1e2a45] border-0">
-                                                    <div className="text-sm text-muted-foreground">
-                                                        Laatste Join
-                                                    </div>
-                                                    <div className="font-semibold">
-                                                        {
-                                                            playerDetails[
-                                                                selectedLog.player as keyof typeof playerDetails
-                                                            ].lastJoin
-                                                        }
-                                                    </div>
-                                                </Card>
-                                            </div>
-
-                                            <div>
-                                                <h4 className="font-semibold mb-2">
-                                                    Notities
-                                                </h4>
-                                                <Card className="p-3 bg-[#1e2a45] border-0">
-                                                    <p className="text-sm">
-                                                        {
-                                                            playerDetails[
-                                                                selectedLog.player as keyof typeof playerDetails
-                                                            ].notes
-                                                        }
-                                                    </p>
-                                                </Card>
-                                            </div>
-                                        </div>
-                                    ) : (
-                                        <div className="text-center p-4">
-                                            <p>
-                                                Geen speler informatie
-                                                beschikbaar
-                                            </p>
-                                        </div>
-                                    )}
-                                </TabsContent>
-                                <TabsContent
-                                    value="related-logs"
-                                    className="mt-4"
-                                >
-                                    <div className="space-y-2">
-                                        <h4 className="font-semibold">
-                                            Recente logs van{" "}
-                                            {selectedLog.player}
-                                        </h4>
-                                        <div className="space-y-2">
-                                            {getRelatedLogs(
-                                                selectedLog.player
-                                            ).map((log) => (
-                                                <Card
-                                                    key={log.id}
-                                                    className="p-3 bg-[#1e2a45] border-0"
-                                                >
-                                                    <div className="flex justify-between items-start">
-                                                        <div>
-                                                            <div className="flex items-center gap-2">
-                                                                <Badge
-                                                                    variant={
-                                                                        getSeverityColor(
-                                                                            log.severity
-                                                                        ) as any
-                                                                    }
-                                                                >
-                                                                    {log.action}
-                                                                </Badge>
-                                                                <span className="text-xs text-muted-foreground">
-                                                                    {
-                                                                        log.timestamp
-                                                                    }
-                                                                </span>
-                                                            </div>
-                                                            <p className="text-sm mt-1">
-                                                                {log.details}
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </Card>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </TabsContent>
-                            </Tabs>
-
-                            <div className="flex justify-end gap-2 pt-4">
-                                <Button
-                                    variant="outline"
-                                    className="bg-[#1e2a45] border-0 hover:bg-[#2a3a5a]"
-                                >
-                                    Meer logs van deze speler
-                                </Button>
-                                <Button className="bg-[#3b82f6] hover:bg-[#2563eb] text-white border-0">
-                                    Actie ondernemen
-                                </Button>
                             </div>
                         </div>
                     )}
