@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -11,6 +12,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/logs/players', [LogController::class, 'index'])->name('logs.index');
+
+Route::controller(AdminController::class)->prefix('admin')->group(function () {
+    Route::get('/users', 'index')->name('admin.users.index');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
