@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('logs', function (Blueprint $table) {
+        Schema::create('log_role', function (Blueprint $table) {
             $table->id();
-            $table->string('action');
-            $table->string('player_identifier');
-            $table->string('role');
-            $table->string('severity');
-            $table->string('message');
-            $table->json('data');
+            $table->foreignId('log_id')->constrained()->onDelete('cascade');
+            $table->foreignId('role_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('logs');
+        Schema::dropIfExists('log_role');
     }
 };

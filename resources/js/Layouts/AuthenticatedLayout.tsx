@@ -51,19 +51,37 @@ export default function Authenticated({
                                 <span>Speler Logs</span>
                             </Link>
                         </li>
-                        <li>
-                            <Link
-                                href={route("dashboard")}
-                                className={`flex items-center gap-4 p-2 rounded-lg ${
-                                    route().current("dashboard")
-                                        ? "bg-gray-700 text-white"
-                                        : "hover:bg-gray-700 hover:text-white"
-                                }`}
-                            >
-                                <Home className="h-4 w-4" />
-                                <span>Dashboard</span>
-                            </Link>
-                        </li>
+
+                        {user && user.is_admin ? (
+                            <>
+                                <li>
+                                    <Link
+                                        href={route("admin.users.index")}
+                                        className={`flex items-center gap-4 p-2 rounded-lg ${
+                                            route().current("admin.users.index")
+                                                ? "bg-gray-700 text-white"
+                                                : "hover:bg-gray-700 hover:text-white"
+                                        }`}
+                                    >
+                                        <Settings className="h-4 w-4" />
+                                        <span>Gebruikers</span>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href={route("admin.roles.index")}
+                                        className={`flex items-center gap-4 p-2 rounded-lg ${
+                                            route().current("admin.roles.index")
+                                                ? "bg-gray-700 text-white"
+                                                : "hover:bg-gray-700 hover:text-white"
+                                        }`}
+                                    >
+                                        <Settings className="h-4 w-4" />
+                                        <span>Rollen</span>
+                                    </Link>
+                                </li>
+                            </>
+                        ) : null}
                     </ul>
                 </nav>
 
